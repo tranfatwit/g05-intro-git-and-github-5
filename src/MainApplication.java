@@ -8,7 +8,12 @@ public class MainApplication {
         System.out.print("Do you: \n[1]: Answer the Door. \n[2]: Ignore the Door. \n[0]: End game. \nEnter choice: ");
         int choice = input.nextInt();
 
-        System.out.println(choice);
-
+        if(choice == 1){
+            // DO SOMETHING
+        } else if(choice == 2){
+            // DO SOMETHING
+        } else {
+            System.exit(0);
+        }
     }
 }
