@@ -20,7 +20,7 @@ public class MainApplication {
         }
 
 
-        System.out.println("He goes to the door and is meet by a fellow worker at the spray cheese factory, Mr. G\n'Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Cheese, never showed up to the cheese tasting club, and she didn’t pick up when we called her. I fear something terrible must have happened to her!'");
+        System.out.println("He goes to the door and is meet by a fellow worker at the spray cheese factory, Mr. G\n'Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Chedders, never showed up to the cheese tasting club, and she didn’t pick up when we called her. I fear something terrible must have happened to her!'");
         System.out.print("Do you: \n[1]: Let him inside to talk more. \n[2]: Go to the police station. \n[0]: End game. \nEnter choice: ");
         
         choice = input.nextInt();
