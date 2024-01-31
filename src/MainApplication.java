@@ -48,7 +48,7 @@ public class MainApplication {
         
 
         System.out.println("You learn she headed towards the sewers, and on your way over there, Miss Swiss aproaches");
-        System.out.print("Do you: \n[1]: Talk to her. \n[2]: Out of my way. \n[0]: End game. \nEnter choice: ");
+        System.out.print("Do you:  \n[1]: Out of my way. \n[2]: Talk to her.\n[0]: End game. \nEnter choice: ");
         
         choice = input.nextInt();
         if(choice == 1){
@@ -62,8 +62,8 @@ public class MainApplication {
             if(choice == 1){
                 System.out.println("You polietly say you have to go now, and head down to the sewers");
             } else if(choice == 2){
-                System.out.println("She is has been seeing someone else");
-                knowlegde=1;
+                System.out.println("She has been seeing someone else");
+                knowledge=1;
             } else {
             System.exit(0);
             }
@@ -98,7 +98,7 @@ public class MainApplication {
                 }
             }
                 
-            else if(knife=1){
+            else if(knife==1){
                 System.out.print("Do you: \n[1]: Help her, without risking yourself. \n[2]: Hold it up yourself. \n[3]: Use the knife to disarm the trap. \n[0]: End game. \nEnter choice: ");
                 choice = input.nextInt();
                 if(choice == 1){
@@ -114,7 +114,7 @@ public class MainApplication {
                 System.exit(0);
                 }}
                 
-            else if(knowledge=1){
+            else if(knowledge==1){
                 System.out.print("Do you: \n[1]: Help her, without risking yourself. \n[2]: Hold it up yourself. \n[3] Let her die. \n[0]: End game. \nEnter choice: ");
                 choice = input.nextInt();
                 if(choice == 1){
