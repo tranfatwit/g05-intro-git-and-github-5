@@ -43,7 +43,7 @@ public class MainApplication {
                 System.exit(0);
         }
 
-        printStory("He goes to the door and is met by a fellow worker at the spray cheese factory, Mr. Gorgonzola\n'Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Chedders, never showed up to the cheese tasting club, and she didn’t pick up when we called her. I fear something terrible must have happened to her!'");
+        printStory("He goes to the door and is met by a fellow worker at the spray cheese factory, Mr. Gorgonzola\n\"Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Chedders, never showed up to the cheese tasting club, and she didn't pick up when we called her. I fear something terrible must have happened to her!\"");
         printStoryPrompt("Do you: \n[1]: Let him inside to talk more. \n[2]: Go to the police station. \n[0]: End game. \nEnter choice: ");
         choice = input.nextInt();
 
