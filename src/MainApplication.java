@@ -43,7 +43,7 @@ public class MainApplication {
                 System.exit(0);
         }
 
-        printStory("He goes to the door and is met by a fellow worker at the spray cheese factory, Mr. Gorgonzola\n\"Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Chedders, never showed up to the cheese tasting club, and she didn't pick up when we called her. I fear something terrible must have happened to her!\"");
+        printStory("He goes to the door and is met by a fellow worker at the spray cheese factory, Mr. Gorgonzola\n\"Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Cheddar, never showed up to the cheese tasting club, and she didn't pick up when we called her. I fear something terrible must have happened to her!\"");
         printStoryPrompt("Do you: \n[1]: Let him inside to talk more. \n[2]: Go to the police station. \n[0]: End game. \nEnter choice: ");
         choice = input.nextInt();
 
@@ -126,7 +126,7 @@ public class MainApplication {
 
         switch (Math.abs(choice-correctPath)) {
             case 0:
-                printStory("You find Mrs. Chedders holding a mouse trap up.");
+                printStory("You find Mrs. Cheddar holding a mouse trap up.");
                 printStoryPrompt("Do you: \n[1] Help her, without risking yourself. \n[2] Hold it up yourself." + (knife ? " \n[" + curr++ + "] Use the knife to disarm the trap." : "") + (knowledge ? " \n[" + curr++ + "] Let her die for sleeping with Colby Jack." : "") + " \nEnter choice: ");
                 choice = input.nextInt();
                 switch(choice){
@@ -158,7 +158,7 @@ public class MainApplication {
                 break;
             case 1:
                 if(knife && knowledge){
-                    printStory("You hear a snap in the opposite direction, head in that way, and find Mrs. Chedders dead. You took too long.");
+                    printStory("You hear a snap in the opposite direction, head in that way, and find Mrs. Cheddar dead. You took too long.");
                     System.exit(0);
                 }
                 else{
