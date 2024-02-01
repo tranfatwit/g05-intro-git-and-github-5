@@ -168,7 +168,9 @@ public class MainApplication {
                             printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
                             System.exit(0);
                         }
-                        printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                        if(knowledge){
+                            printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                        }
                         System.exit(0);
                     case 4:
                         if(knife && knowledge){
@@ -208,7 +210,9 @@ public class MainApplication {
                                 printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
                                 System.exit(0);
                             }
-                            printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                            if(knowledge){
+                                printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                            }
                             System.exit(0);
                         case 4:
                             if(knife && knowledge){
