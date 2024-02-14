@@ -134,6 +134,14 @@ public class MainApplication {
                     System.exit(0);
             }
 
+            if(correctPath == 1)
+            {
+                Helper.printStoryImage(images.Sewer_L);
+            }
+            else
+            {
+                Helper.printStoryImage(images.Sewer_R);
+            }
             Helper.printStory("Enter Sewers");
             Helper.printStoryPrompt("Do you: \n[1]: Go left. \n[2]: Go right. \n[Other]: End game. \nEnter choice: ");
 
