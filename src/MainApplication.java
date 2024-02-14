@@ -16,6 +16,9 @@ public class MainApplication {
             // Start menu
             Helper.startMenu();
 
+            //create story object
+            Story story = new Story(); 
+
             /* Proceed to text adventure if player starts game */
 
             Helper.printStory("Mr. Cheese wakes up and hears a knock on the door.");
@@ -26,15 +29,18 @@ public class MainApplication {
             switch (choice) {
                 case 1:
                     Helper.printStory("Mr. Cheese gets out of bed.");
+                    story.addEntry("Answer the Door?", "Yes");
                     break;
                 case 2:
                     Helper.printStory("Mr. Gorgonzola picks the lock and kills you!");
+                    story.addEntry("Answer the Door?", "No");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                     Helper.restartGamePrompt();
                     continue;
             }
-
+            
+            story.printPast();
             Helper.printStory("He goes to the door and is met by a fellow worker at the spray cheese factory, Mr. Gorgonzola\n\"Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Cheddar, never showed up to the cheese tasting club, and she didn't pick up when we called her. I fear something terrible must have happened to her!\"");
             Helper.printStoryPrompt("Do you: \n[1]: Let him inside to talk more. \n[2]: Go to the police station. \n[Other]: End game. \nEnter choice: ");
 
@@ -43,15 +49,18 @@ public class MainApplication {
             switch (choice) {
                 case 2:
                     Helper.printStory("Mr. Cheese rushes out of the house and runs down to the police station.");
+                    story.addEntry("Mr Gorgonzola?", "Police Station");
                     break;
                 case 1:
                     Helper.printStory("Mr. Gorgonzola pushes the door open and pulls out a knife and kills you. R.I.P!");
+                    story.addEntry("Mr Gorgonzola?", "Let Him Inside");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                     Helper.restartGamePrompt();
                     continue;
             }
-
+            
+            story.printPast();
             Helper.printStory("You enter the police station, and are greeted by the brightest police officer they have, Kurd Nerd Joe.");
             Helper.printStoryPrompt("Do you: \n[1]: Search on your own. \n[2]: Let the police take over. \n[Other]: End game. \nEnter choice: ");
 
@@ -60,15 +69,18 @@ public class MainApplication {
             switch (choice) {
                 case 1:
                     Helper.printStory("Kurd Nerd Joe shows Mr. Cheese the CCTV camera where you see his wife heading towards the sewers. Mr. Cheese rushes out of the village and asks if anyone has seen his wife.");
+                    story.addEntry("Who Is Looking?", "You");
                     break;
                 case 2:
                     Helper.printStory("The police take over the investigation, but the case goes cold. Mr. Cheese never finds his wife.");
+                    story.addEntry("Who Is Looking?", "Police");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                     Helper.restartGamePrompt();
                     continue;
             }
 
+            story.printPast();
             Helper.printStory("On his way to the sewers, Miss Swiss approaches.");
             Helper.printStoryPrompt("Do you: \n[1]: Tell her to 'Move out of my way!' \n[2]: Talk to her.\n[Other]: End game. \nEnter choice: ");
 
