@@ -68,13 +68,14 @@ public class Helper {
     /***
      * Method to prompt player if they want to restart the game
      */
-    public static void restartGamePrompt() {
+    public static boolean restartGamePrompt() {
         printStoryPrompt("Do you want to play again?: \n[1]: Yes. \n[2]: No. \nEnter choice: ");
         Scanner input = new Scanner(System.in);
         if (Helper.getChoice(input) == 2) {
             Helper.printStory("Thanks for playing, take it cheesy!");
             System.exit(0);
         }
+        return true;
     }
 }
 

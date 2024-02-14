@@ -2,7 +2,9 @@ import java.util.Scanner;
 
 public class MainApplication {
     public static void main(String[] args) {
+
         // Game continues until player quits
+        boolean replayed = false;
         while (true) {
             // Variables for game states
             Scanner input = new Scanner(System.in);
@@ -31,7 +33,7 @@ public class MainApplication {
                     Helper.printStory("Mr. Gorgonzola picks the lock and kills you!");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                    Helper.restartGamePrompt();
+                    replayed = Helper.restartGamePrompt();
                     continue;
             }
 
@@ -48,7 +50,7 @@ public class MainApplication {
                     Helper.printStory("Mr. Gorgonzola pushes the door open and pulls out a knife and kills you. R.I.P!");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                    Helper.restartGamePrompt();
+                    replayed = Helper.restartGamePrompt();
                     continue;
             }
 
@@ -62,10 +64,14 @@ public class MainApplication {
                     Helper.printStory("Kurd Nerd Joe shows Mr. Cheese the CCTV camera where you see his wife heading towards the sewers. Mr. Cheese rushes out of the village and asks if anyone has seen his wife.");
                     break;
                 case 2:
-                    Helper.printStory("The police take over the investigation, but the case goes cold. Mr. Cheese never finds his wife.");
+                    if(replayed = true) {
+                        Helper.printStory("The police take over the investigation, but they find Mrs. Cheddar too late, she's dead. They blame Mr. Cheese for her death.");
+                    }  else {
+                        Helper.printStory("The police take over the investigation, but the case goes cold. Mr. Cheese never finds his wife.");
+                    }
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                    Helper.restartGamePrompt();
+                    replayed = Helper.restartGamePrompt();
                     continue;
             }
 
@@ -96,13 +102,13 @@ public class MainApplication {
                                 break;
                             default:
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                Helper.restartGamePrompt();
+                                replayed = Helper.restartGamePrompt();
                                 continue;
                         }
                     } else {
                         knowledge = true;
                         Helper.printStory("She tells Mr. Cheese that she saw Mrs. Cheddar kissing Colby Jack.");
-                        Helper.printStoryPrompt("Do you: \n[1]: Interrupt her and head to the sewers \n[2]: Let her keep talking. \n[Other]: End game. \nEnter choice: ");
+                        Helper.printStoryPrompt("Do you: \n[1]: Interrupt her and head to the sewers \n[2]: Let her keep talking. " + (replayed ? "\n[" + curr++ + "] Ask Miss Swiss if she has anything that can help you save Mrs. Cheddar. " : "") + "\n[Other]: End game. \nEnter choice: ");
 
                         choice = Helper.getChoice(input);
 
@@ -114,9 +120,21 @@ public class MainApplication {
                                 Helper.printStory("Miss Swiss gives Mr. Cheese a swiss army knife.");
                                 knife = true;
                                 break;
+                            case 3:
+                                if (replayed) {
+                                    Helper.printStory("Miss Swiss gives Mr. Cheese a swiss army knife.");
+                                    knife = true;
+                                    curr = 3;
+                                    break;
+                                } else {
+                                    // not on a replay, case 3 functions as an "other" and the player should be prompted to replay or quit
+                                    replayed = Helper.restartGamePrompt();
+                                    continue;
+                                }
+                                
                             default:
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                Helper.restartGamePrompt();
+                                replayed = Helper.restartGamePrompt();
                                 continue;
                         }
                     }
@@ -141,49 +159,55 @@ public class MainApplication {
                         case 1:
                             Helper.printStory("Mr. Cheese fails to save Mrs. Cheddar, and she dies.");
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                            Helper.restartGamePrompt();
+                            replayed = Helper.restartGamePrompt();
                             continue;
                         case 2:
                             Helper.printStory("Mr. Cheese sacrifices himself to save her and dies. Mrs. Cheddar marries Colby Jack.");
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                            Helper.restartGamePrompt();
+                            replayed = Helper.restartGamePrompt();
                             continue;
                         case 3:
                             if (knife) {
                                 if (knowledge) {
+                                    if (replayed) {
+                                        Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They try to fix their marriage, but Mr. Cheese cheats on Mrs. Cheddar with Miss Swiss, \nthe only woman who was ever truly honest with him.");
+                                        // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                        Helper.restartGamePrompt();
+                                        continue;
+                                    }
                                     Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They fix their marriage, and the two live happily ever after.");
                                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                    Helper.restartGamePrompt();
+                                    replayed = Helper.restartGamePrompt();
                                     continue;
                                 }
                                 Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                Helper.restartGamePrompt();
+                                replayed = Helper.restartGamePrompt();
                                 continue;
                             }
                             if (knowledge) {
                                 Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
                             }
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                            Helper.restartGamePrompt();
+                            replayed = Helper.restartGamePrompt();
                             continue;
                         case 4:
                             if (knife && knowledge) {
                                 Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
                             }
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                            Helper.restartGamePrompt();
+                            replayed = Helper.restartGamePrompt();
                             continue;
                         default:
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                            Helper.restartGamePrompt();
+                            replayed = Helper.restartGamePrompt();
                             continue;
                     }
                 case 1:
                     if (knife && knowledge) {
                         Helper.printStory("Mr. Cheese hear a snap in the opposite direction, heads in that direction, and finds Mrs. Cheddar dead. He took too long to reach her.");
                         // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                        Helper.restartGamePrompt();
+                        replayed = Helper.restartGamePrompt();
                         continue;
                     } else {
                         Helper.printStory("Mr. Cheese hears a groan coming from the opposite direction, heads in that direction, and finds Mrs. Cheddar struggling under a mouse trap.");
@@ -195,38 +219,46 @@ public class MainApplication {
                             case 1:
                                 Helper.printStory("Mr. Cheese fails to save Mrs. Cheddar, and she dies.");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                Helper.restartGamePrompt();
+                                replayed = Helper.restartGamePrompt();
                                 continue;
                             case 2:
                                 Helper.printStory("Mr. Cheese sacrifices himself to save her and dies. Mrs. Cheddar marries Colby Jack.");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                Helper.restartGamePrompt();
+                                replayed = Helper.restartGamePrompt();
                                 continue;
                             case 3:
                                 if (knife) {
                                     if (knowledge) {
                                         Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They fix their marriage, and the two live happily ever after.");
                                         // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                        Helper.restartGamePrompt();
+                                        replayed = Helper.restartGamePrompt();
                                         continue;
                                     }
-                                    Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
+                                    if (replayed) {
+                                        Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar admits she cheated with Colby Jack but she'll never do it again becasue Mr. Cheddar was so brave!\nThey live happily ever after'");
+                                    } else {
+                                        Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
+                                    }
                                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                    Helper.restartGamePrompt();
+                                    replayed = Helper.restartGamePrompt();
                                     continue;
                                 }
                                 if (knowledge) {
-                                    Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                                    if (replayed) {
+                                        Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him and goes to find Miss Swiss for comfort");
+                                    } else {
+                                        Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                                    }
                                 }
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                Helper.restartGamePrompt();
+                                replayed = Helper.restartGamePrompt();
                                 continue;
                             case 4:
                                 if (knife && knowledge) {
                                     Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
                                 }
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
-                                Helper.restartGamePrompt();
+                                replayed = Helper.restartGamePrompt();
                                 continue;
                         }
                     }
