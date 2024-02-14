@@ -36,6 +36,7 @@ public class MainApplication {
                     story.addEntry("Answer the Door?", "No");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                    story.printPast();
                     Helper.restartGamePrompt();
                     continue;
             }
@@ -56,6 +57,7 @@ public class MainApplication {
                     story.addEntry("Mr Gorgonzola?", "Let Him Inside");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                    story.printPast();
                     Helper.restartGamePrompt();
                     continue;
             }
@@ -76,6 +78,7 @@ public class MainApplication {
                     story.addEntry("Who Is Looking?", "Police");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                    story.printPast();
                     Helper.restartGamePrompt();
                     continue;
             }
@@ -89,11 +92,13 @@ public class MainApplication {
             switch (choice) {
                 case 1:
                     Helper.printStory("Mr. Cheese pushes Miss Swiss aside, and heads towards the sewers.");
+                    story.addEntry("Miss Swiss [1]?", "Push Aside");
                     break;
                 case 2:
                     if (knifeFirst) {
                         knife = true;
                         Helper.printStory("Miss Swiss gives Mr. Cheese a swiss army knife, and keeps talking...");
+                        story.addEntry("Miss Swiss [1]?", "Talk *KNIFE OBTAINED*");
                         Helper.printStoryPrompt("Do you: \n[1]: Interrupt her and head to the sewers. \n[2]: Let her keep talking. \n[Other]: End game. \nEnter choice: ");
 
                         choice = Helper.getChoice(input);
@@ -101,19 +106,23 @@ public class MainApplication {
                         switch (choice) {
                             case 1:
                                 Helper.printStory("Mr. Cheese says he has to go, and heads down to the sewers.");
+                                story.addEntry("Miss Swiss [2]?", "Interrupt");
                                 break;
                             case 2:
                                 Helper.printStory("Miss Swiss continues talking and she accidentally blurted out to Mr. Cheese that she saw Mrs. Cheddar kissing Colby Jack.");
+                                story.addEntry("Miss Swiss [2]?", "Talk *KNOWLEDGE OBTAINED*");
                                 knowledge = true;
                                 break;
                             default:
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                story.printPast();
                                 Helper.restartGamePrompt();
                                 continue;
                         }
                     } else {
                         knowledge = true;
                         Helper.printStory("She tells Mr. Cheese that she saw Mrs. Cheddar kissing Colby Jack.");
+                        story.addEntry("Miss Swiss [1]", "Talk *KNOWLEDGE OBTAINED");
                         Helper.printStoryPrompt("Do you: \n[1]: Interrupt her and head to the sewers \n[2]: Let her keep talking. \n[Other]: End game. \nEnter choice: ");
 
                         choice = Helper.getChoice(input);
@@ -121,13 +130,16 @@ public class MainApplication {
                         switch (choice) {
                             case 1:
                                 Helper.printStory("Mr. Cheese politely says he has to go, and heads down to the sewers.");
+                                story.addEntry("Miss Swiss [2]", "Interrupt");
                                 break;
                             case 2:
                                 Helper.printStory("Miss Swiss gives Mr. Cheese a swiss army knife.");
+                                story.addEntry("Miss Swiss [2]", "Talk *KNIFE OBTAINED*");
                                 knife = true;
                                 break;
                             default:
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                story.printPast();
                                 Helper.restartGamePrompt();
                                 continue;
                         }
@@ -145,6 +157,7 @@ public class MainApplication {
             switch (Math.abs(choice - correctPath)) {
                 case 0:
                     Helper.printStory("Mr. Cheese find Mrs. Cheddar holding a mouse trap up.");
+                    story.addEntry("Sewers?", "Right Choice");
                     Helper.printStoryPrompt("Do you: \n[1] Help her, without risking yourself. \n[2] Hold it up yourself." + (knife ? " \n[" + curr++ + "] Use the knife to disarm the trap." : "") + (knowledge ? " \n[" + curr++ + "] Let her die for sleeping with Colby Jack." : "") + " \n[Other]: End game. \nEnter choice: ");
 
                     choice = Helper.getChoice(input);
@@ -152,53 +165,69 @@ public class MainApplication {
                     switch (choice) {
                         case 1:
                             Helper.printStory("Mr. Cheese fails to save Mrs. Cheddar, and she dies.");
+                            story.addEntry("Mouse Trap?", "No Risk");
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                            story.printPast();
                             Helper.restartGamePrompt();
                             continue;
                         case 2:
                             Helper.printStory("Mr. Cheese sacrifices himself to save her and dies. Mrs. Cheddar marries Colby Jack.");
+                            story.addEntry("Mouse Trap?", "Risk");
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                            story.printPast();
                             Helper.restartGamePrompt();
                             continue;
                         case 3:
                             if (knife) {
                                 if (knowledge) {
                                     Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They fix their marriage, and the two live happily ever after.");
+                                    story.addEntry("Mouse Trap?", "Disarm *USE KNIFE* *USE KNOWLEDGE*");
                                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                    story.printPast();
                                     Helper.restartGamePrompt();
                                     continue;
                                 }
                                 Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
+                                story.addEntry("Mouse Trap?", "Disarm *USE KNIFE*");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                story.printPast();
                                 Helper.restartGamePrompt();
                                 continue;
                             }
                             if (knowledge) {
                                 Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                                story.addEntry("Mouse Trap?", "Ignore *USE KNOWLEDGE*");
                             }
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                            story.printPast();
                             Helper.restartGamePrompt();
                             continue;
                         case 4:
                             if (knife && knowledge) {
                                 Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                                story.addEntry("Mouse Trap?", "Ignore *USE KNOWLEDGE*");
                             }
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                            story.printPast();
                             Helper.restartGamePrompt();
                             continue;
                         default:
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                            story.printPast();
                             Helper.restartGamePrompt();
                             continue;
                     }
                 case 1:
                     if (knife && knowledge) {
                         Helper.printStory("Mr. Cheese hear a snap in the opposite direction, heads in that direction, and finds Mrs. Cheddar dead. He took too long to reach her.");
+                        story.addEntry("Sewers?", "Wrong Choice");
                         // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                        story.printPast();
                         Helper.restartGamePrompt();
                         continue;
                     } else {
                         Helper.printStory("Mr. Cheese hears a groan coming from the opposite direction, heads in that direction, and finds Mrs. Cheddar struggling under a mouse trap.");
+                        story.addEntry("Sewers?", "Right Choice");
                         Helper.printStoryPrompt("Do you: \n[1] Help her, without risking yourself. \n[2] Hold it up yourself." + (knife ? " \n[" + curr++ + "] Use the knife to disarm the trap." : "") + (knowledge ? " \n[" + curr++ + "] Let her die for sleeping with Colby Jack." : "") + " \n[Other]: End game. \nEnter choice: ");
 
                         choice = Helper.getChoice(input);
@@ -206,38 +235,50 @@ public class MainApplication {
                         switch (choice) {
                             case 1:
                                 Helper.printStory("Mr. Cheese fails to save Mrs. Cheddar, and she dies.");
+                                story.addEntry("Mouse Trap?", "No Risk");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                story.printPast();
                                 Helper.restartGamePrompt();
                                 continue;
                             case 2:
                                 Helper.printStory("Mr. Cheese sacrifices himself to save her and dies. Mrs. Cheddar marries Colby Jack.");
+                                story.addEntry("Mouse Trap?", "Risk");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                story.printPast();
                                 Helper.restartGamePrompt();
                                 continue;
                             case 3:
                                 if (knife) {
                                     if (knowledge) {
                                         Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They fix their marriage, and the two live happily ever after.");
+                                        story.addEntry("Mouse Trap?", "Disarm *USE KNIFE* *USE KNOWLEDGE*");
                                         // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                        story.printPast();
                                         Helper.restartGamePrompt();
                                         continue;
                                     }
                                     Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
+                                    story.addEntry("Mouse Trap?", "Disarm *USE KNIFE*");
                                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                    story.printPast();
                                     Helper.restartGamePrompt();
                                     continue;
                                 }
                                 if (knowledge) {
                                     Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                                    story.addEntry("Mouse Trap?", "Ignore *USE KNOWLEDGE*");
                                 }
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                story.printPast();
                                 Helper.restartGamePrompt();
                                 continue;
                             case 4:
                                 if (knife && knowledge) {
                                     Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
+                                    story.addEntry("Mouse Trap?", "Ignore *USE KNOWLEDGE*");
                                 }
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                                story.printPast();
                                 Helper.restartGamePrompt();
                                 continue;
                         }
@@ -245,6 +286,7 @@ public class MainApplication {
                     break;
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
+                    story.printPast();
                     Helper.restartGamePrompt();
                     continue;
             }
