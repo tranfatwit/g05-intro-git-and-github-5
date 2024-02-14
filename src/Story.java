@@ -8,7 +8,7 @@ public class Story {
     }
     public void printPast() {
         System.out.println("-+-+-+-+-+-+-+-+-+-STORY-+-+-+-+-+-+-+-+-+-");
-        System.out.println(story);
+        System.out.print(story);
         System.out.println("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-");
     }
 }
