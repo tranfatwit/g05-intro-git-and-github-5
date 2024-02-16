@@ -17,6 +17,7 @@ public class MainApplication {
 
             // Start menu
             Helper.startMenu();
+            Images images = new Images();
 
             /* Proceed to text adventure if player starts game */
 
@@ -30,6 +31,7 @@ public class MainApplication {
                     Helper.printStory("Mr. Cheese gets out of bed.");
                     break;
                 case 2:
+                    Helper.printStoryImage(images.Tombstone);
                     Helper.printStory("Mr. Gorgonzola picks the lock and kills you!");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
@@ -37,6 +39,7 @@ public class MainApplication {
                     continue;
             }
 
+            Helper.printStoryImage(images.Gorgonzola_HD);
             Helper.printStory("He goes to the door and is met by a fellow worker at the spray cheese factory, Mr. Gorgonzola\n\"Mr. Cheese! Thank goodness you woke up! Your wife, Mrs. Cheddar, never showed up to the cheese tasting club, and she didn't pick up when we called her. I fear something terrible must have happened to her!\"");
             Helper.printStoryPrompt("Do you: \n[1]: Let him inside to talk more. \n[2]: Go to the police station. \n[Other]: End game. \nEnter choice: ");
 
@@ -47,6 +50,7 @@ public class MainApplication {
                     Helper.printStory("Mr. Cheese rushes out of the house and runs down to the police station.");
                     break;
                 case 1:
+                    Helper.printStoryImage(images.Tombstone);
                     Helper.printStory("Mr. Gorgonzola pushes the door open and pulls out a knife and kills you. R.I.P!");
                 default:
                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
@@ -54,6 +58,7 @@ public class MainApplication {
                     continue;
             }
 
+            Helper.printStoryImage(images.CheeseToPolice);
             Helper.printStory("You enter the police station, and are greeted by the brightest police officer they have, Kurd Nerd Joe.");
             Helper.printStoryPrompt("Do you: \n[1]: Search on your own. \n[2]: Let the police take over. \n[Other]: End game. \nEnter choice: ");
 
@@ -65,8 +70,10 @@ public class MainApplication {
                     break;
                 case 2:
                     if(replayed = true) {
+                        Helper.printStoryImage(images.SadCheese);
                         Helper.printStory("The police take over the investigation, but they find Mrs. Cheddar too late, she's dead. They blame Mr. Cheese for her death.");
                     }  else {
+                        Helper.printStoryImage(images.SadCheese);
                         Helper.printStory("The police take over the investigation, but the case goes cold. Mr. Cheese never finds his wife.");
                     }
                 default:
@@ -74,7 +81,7 @@ public class MainApplication {
                     replayed = Helper.restartGamePrompt();
                     continue;
             }
-
+            Helper.printStoryImage(images.LeavePolice_Meeting);
             Helper.printStory("On his way to the sewers, Miss Swiss approaches.");
             Helper.printStoryPrompt("Do you: \n[1]: Tell her to 'Move out of my way!' \n[2]: Talk to her.\n[Other]: End game. \nEnter choice: ");
 
@@ -82,11 +89,13 @@ public class MainApplication {
 
             switch (choice) {
                 case 1:
+                    Helper.printStoryImage(images.CheeseToSewer);
                     Helper.printStory("Mr. Cheese pushes Miss Swiss aside, and heads towards the sewers.");
                     break;
                 case 2:
                     if (knifeFirst) {
                         knife = true;
+                        Helper.printStoryImage(images.Knife);
                         Helper.printStory("Miss Swiss gives Mr. Cheese a swiss army knife, and keeps talking...");
                         Helper.printStoryPrompt("Do you: \n[1]: Interrupt her and head to the sewers. \n[2]: Let her keep talking. \n[Other]: End game. \nEnter choice: ");
 
@@ -94,6 +103,7 @@ public class MainApplication {
 
                         switch (choice) {
                             case 1:
+                                Helper.printStoryImage(images.CheeseToSewer);
                                 Helper.printStory("Mr. Cheese says he has to go, and heads down to the sewers.");
                                 break;
                             case 2:
@@ -114,14 +124,17 @@ public class MainApplication {
 
                         switch (choice) {
                             case 1:
+                                Helper.printStoryImage(images.CheeseToSewer);
                                 Helper.printStory("Mr. Cheese politely says he has to go, and heads down to the sewers.");
                                 break;
                             case 2:
+                                Helper.printStoryImage(images.Knife);
                                 Helper.printStory("Miss Swiss gives Mr. Cheese a swiss army knife.");
                                 knife = true;
                                 break;
                             case 3:
                                 if (replayed) {
+                                    Helper.printStoryImage(images.Knife);
                                     Helper.printStory("Miss Swiss gives Mr. Cheese a swiss army knife.");
                                     knife = true;
                                     curr = 3;
@@ -131,7 +144,7 @@ public class MainApplication {
                                     replayed = Helper.restartGamePrompt();
                                     continue;
                                 }
-                                
+
                             default:
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                                 replayed = Helper.restartGamePrompt();
@@ -142,7 +155,14 @@ public class MainApplication {
                 default:
                     System.exit(0);
             }
-
+            if(correctPath == 1)
+            {
+                Helper.printStoryImage(images.Sewer_L);
+            }
+            else
+            {
+                Helper.printStoryImage(images.Sewer_R);
+            }
             Helper.printStory("Enter Sewers");
             Helper.printStoryPrompt("Do you: \n[1]: Go left. \n[2]: Go right. \n[Other]: End game. \nEnter choice: ");
 
@@ -150,6 +170,7 @@ public class MainApplication {
 
             switch (Math.abs(choice - correctPath)) {
                 case 0:
+                    Helper.printStoryImage(images.MouseTrap);
                     Helper.printStory("Mr. Cheese find Mrs. Cheddar holding a mouse trap up.");
                     Helper.printStoryPrompt("Do you: \n[1] Help her, without risking yourself. \n[2] Hold it up yourself." + (knife ? " \n[" + curr++ + "] Use the knife to disarm the trap." : "") + (knowledge ? " \n[" + curr++ + "] Let her die for sleeping with Colby Jack." : "") + " \n[Other]: End game. \nEnter choice: ");
 
@@ -157,11 +178,13 @@ public class MainApplication {
 
                     switch (choice) {
                         case 1:
+                            Helper.printStoryImage(images.PrettyBadEnd);
                             Helper.printStory("Mr. Cheese fails to save Mrs. Cheddar, and she dies.");
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                             replayed = Helper.restartGamePrompt();
                             continue;
                         case 2:
+                            Helper.printStoryImage(images.Tombstone);
                             Helper.printStory("Mr. Cheese sacrifices himself to save her and dies. Mrs. Cheddar marries Colby Jack.");
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                             replayed = Helper.restartGamePrompt();
@@ -170,22 +193,26 @@ public class MainApplication {
                             if (knife) {
                                 if (knowledge) {
                                     if (replayed) {
+                                        Helper.printStoryImage(images.SadCheese);
                                         Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They try to fix their marriage, but Mr. Cheese cheats on Mrs. Cheddar with Miss Swiss, \nthe only woman who was ever truly honest with him.");
                                         // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                                         Helper.restartGamePrompt();
                                         continue;
                                     }
+                                    Helper.printStoryImage(images.GoodEnd);
                                     Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They fix their marriage, and the two live happily ever after.");
                                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                                     replayed = Helper.restartGamePrompt();
                                     continue;
                                 }
+                                Helper.printStoryImage(images.SadCheese);
                                 Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                                 replayed = Helper.restartGamePrompt();
                                 continue;
                             }
                             if (knowledge) {
+                                Helper.printStoryImage(images.PrettyBadEnd);
                                 Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
                             }
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
@@ -193,6 +220,7 @@ public class MainApplication {
                             continue;
                         case 4:
                             if (knife && knowledge) {
+                                Helper.printStoryImage(images.PrettyBadEnd);
                                 Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
                             }
                             // Exits if player wants to quit or continues to next iteration of loop if they want to restart
@@ -205,11 +233,13 @@ public class MainApplication {
                     }
                 case 1:
                     if (knife && knowledge) {
+                        Helper.printStoryImage(images.PrettyBadEnd);
                         Helper.printStory("Mr. Cheese hear a snap in the opposite direction, heads in that direction, and finds Mrs. Cheddar dead. He took too long to reach her.");
                         // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                         replayed = Helper.restartGamePrompt();
                         continue;
                     } else {
+                        Helper.printStoryImage(images.MouseTrap);
                         Helper.printStory("Mr. Cheese hears a groan coming from the opposite direction, heads in that direction, and finds Mrs. Cheddar struggling under a mouse trap.");
                         Helper.printStoryPrompt("Do you: \n[1] Help her, without risking yourself. \n[2] Hold it up yourself." + (knife ? " \n[" + curr++ + "] Use the knife to disarm the trap." : "") + (knowledge ? " \n[" + curr++ + "] Let her die for sleeping with Colby Jack." : "") + " \n[Other]: End game. \nEnter choice: ");
 
@@ -217,11 +247,13 @@ public class MainApplication {
 
                         switch (choice) {
                             case 1:
+                                Helper.printStoryImage(images.SadCheese);
                                 Helper.printStory("Mr. Cheese fails to save Mrs. Cheddar, and she dies.");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                                 replayed = Helper.restartGamePrompt();
                                 continue;
                             case 2:
+                                Helper.printStoryImage(images.Tombstone);
                                 Helper.printStory("Mr. Cheese sacrifices himself to save her and dies. Mrs. Cheddar marries Colby Jack.");
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                                 replayed = Helper.restartGamePrompt();
@@ -229,14 +261,17 @@ public class MainApplication {
                             case 3:
                                 if (knife) {
                                     if (knowledge) {
+                                        Helper.printStoryImage(images.GoodEnd);
                                         Helper.printStory("Mr. Cheese disarms the trap, saving Mrs. Cheddar. They fix their marriage, and the two live happily ever after.");
                                         // Exits if player wants to quit or continues to next iteration of loop if they want to restart
                                         replayed = Helper.restartGamePrompt();
                                         continue;
                                     }
                                     if (replayed) {
-                                        Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar admits she cheated with Colby Jack but she'll never do it again becasue Mr. Cheddar was so brave!\nThey live happily ever after'");
+                                        Helper.printStoryImage(images.GoodEnd);
+                                        Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar admits she cheated with Colby Jack but she'll never do it again because Mr. Cheddar was so brave!\nThey live happily ever after'");
                                     } else {
+                                        Helper.printStoryImage(images.SadCheese);
                                         Helper.printStory("Mr. Cheese disarms the trap. Mrs. Cheddar cheats on him with Colby Jack and divorces him.");
                                     }
                                     // Exits if player wants to quit or continues to next iteration of loop if they want to restart
@@ -245,8 +280,10 @@ public class MainApplication {
                                 }
                                 if (knowledge) {
                                     if (replayed) {
+                                        Helper.printStoryImage(images.PrettyBadEnd);
                                         Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him and goes to find Miss Swiss for comfort");
                                     } else {
+                                        Helper.printStoryImage(images.PrettyBadEnd);
                                         Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
                                     }
                                 }
@@ -255,6 +292,7 @@ public class MainApplication {
                                 continue;
                             case 4:
                                 if (knife && knowledge) {
+                                    Helper.printStoryImage(images.PrettyBadEnd);
                                     Helper.printStory("Mr. Cheese lets Mrs. Cheddar die for cheating on him.");
                                 }
                                 // Exits if player wants to quit or continues to next iteration of loop if they want to restart

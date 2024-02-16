@@ -20,6 +20,12 @@ public class Helper {
         System.out.printf("\n%s", promptString);
     }
 
+	    public static void printStoryImage(String imageString){
+        System.out.printf("\n%s", imageString);
+    }													   
+
+		
+												  
     /***
      * Method to grab and process a player's input
      * @param input player's input
